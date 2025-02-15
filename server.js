@@ -13,7 +13,7 @@ app.use(morgan("dev"));
 
 // Conexión a MongoDB
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("🔥 Conectado a MongoDB"))
   .catch((error) => console.error("❌ Error de conexión a MongoDB:", error));
 
@@ -31,8 +31,12 @@ app.get("/", (req, res) => {
   res.send("¡Servidor funcionando correctamente! 🚀");
 });
 
-// Iniciar servidor
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-  console.log(`⚡ Servidor corriendo en http://localhost:${PORT}`);
-});
+// Iniciar servidor solo si no estamos en entorno de pruebas
+if (process.env.NODE_ENV !== 'test') {
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, () => {
+    console.log(`⚡ Servidor corriendo en http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;  // Exportamos la app para las pruebas
