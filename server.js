@@ -12,10 +12,17 @@ app.use(cors());
 app.use(morgan("dev"));
 
 // Conexión a MongoDB
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("🔥 Conectado a MongoDB"))
-  .catch((error) => console.error("❌ Error de conexión a MongoDB:", error));
+async function connectToDatabase() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("🔥 Conectado a MongoDB");
+  } catch (error) {
+    console.error("❌ Error de conexión a MongoDB:", error);
+    process.exit(1);  // Detener el proceso si no puede conectar
+  }
+}
+
+connectToDatabase();
 
 // Rutas de autenticación
 const authRoutes = require('./routes/authroutes.js');
@@ -31,5 +38,12 @@ app.get("/", (req, res) => {
   res.send("¡Servidor funcionando correctamente! 🚀");
 });
 
-// Exportamos la app para las pruebas y el despliegue en Vercel
-module.exports = app;
+// Iniciar servidor solo si no estamos en entorno de pruebas
+if (process.env.NODE_ENV !== 'test') {
+  // No es necesario especificar un puerto fijo, Vercel asigna uno dinámicamente
+  app.listen(process.env.PORT || 3000, () => {
+    console.log(`⚡ Servidor corriendo en el puerto: ${process.env.PORT || 3000}`);
+  });
+}
+
+module.exports = app;  // Exportamos la app para las pruebas
