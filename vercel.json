@@ -1,21 +1,22 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "env": {
-    "MONGO_URI": "mongodb+srv://luciodrakonov:w4MUSZx3WkyurOAa@cluster0.sf0l5.mongodb.net/myDatabase?retryWrites=true&w=majority&appName=Cluster0"
-  },
-  "engines": {
-    "node": "18.x"
-  },
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/server.js"
-    }
-  ]
-}
+    "version": 2,
+    "builds": [
+      {
+        "src": "server.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "env": {
+      "MONGO_URI": "mongodb+srv://luciodrakonov:w4MUSZx3WkyurOAa@cluster0.sf0l5.mongodb.net/myDatabase?retryWrites=true&w=majority&appName=Cluster0"
+    },
+    "engines": {
+      "node": "18.x"
+    },
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/server.js"
+      }
+    ]
+  }
+  
