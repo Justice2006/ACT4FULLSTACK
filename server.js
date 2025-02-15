@@ -31,12 +31,5 @@ app.get("/", (req, res) => {
   res.send("¡Servidor funcionando correctamente! 🚀");
 });
 
-// Iniciar servidor solo si no estamos en entorno de pruebas
-if (process.env.NODE_ENV !== 'test') {
-  // No es necesario especificar un puerto fijo, Vercel asigna uno dinámicamente
-  app.listen(process.env.PORT || 3000, () => {
-    console.log(`⚡ Servidor corriendo en el puerto: ${process.env.PORT || 3000}`);
-  });
-}
-
-module.exports = app;  // Exportamos la app para las pruebas
+// Exportamos la app para las pruebas y el despliegue en Vercel
+module.exports = app;
