@@ -18,12 +18,12 @@ mongoose
   .catch((error) => console.error("❌ Error de conexión a MongoDB:", error));
 
 // Rutas de autenticación
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authroutes.js');
 app.use('/api/auth', authRoutes);
 
 // Rutas de productos
-const productRoutes = require('./routes/productRoutes');
-const { protect } = require('./middlewares/authMiddleware');
+const productRoutes = require('./routes/productRoutes.js');
+const { protect } = require('./middlewares/authMiddleware.js');
 app.use('/api/products', protect, productRoutes); // Usamos el middleware protect para las rutas de productos
 
 // Ruta de prueba
