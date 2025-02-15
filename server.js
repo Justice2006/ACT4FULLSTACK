@@ -33,11 +33,10 @@ app.get("/", (req, res) => {
 
 // Iniciar servidor solo si no estamos en entorno de pruebas
 if (process.env.NODE_ENV !== 'test') {
-  const PORT = process.env.PORT || 5001;
-  app.listen(PORT, () => {
-    console.log(`⚡ Servidor corriendo en http://localhost:${PORT}`);
+  // No es necesario especificar un puerto fijo, Vercel asigna uno dinámicamente
+  app.listen(process.env.PORT || 3000, () => {
+    console.log(`⚡ Servidor corriendo en el puerto: ${process.env.PORT || 3000}`);
   });
 }
-
 
 module.exports = app;  // Exportamos la app para las pruebas
