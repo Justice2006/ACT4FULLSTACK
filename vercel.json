@@ -7,7 +7,7 @@
     }
   ],
   "env": {
-    "MONGO_URI": "mongodb://localhost:27017/Base_De_Datos_ACT4"
+    "MONGO_URI": "mongodb+srv://luciodrakonov:w4MUSZx3WkyurOAa@cluster0.sf0l5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
   },
   "routes": [
     {
